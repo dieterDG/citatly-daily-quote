@@ -272,52 +272,6 @@ final class QOTD_Plugin {
 		wp_localize_script($handle, 'QOTD', [
 			'endpoint' => esc_url_raw(rest_url(self::REST_NAMESPACE . self::REST_ROUTE)),
 		]);
-
-		// Kleiner Inline-Fallback (keine HTML-Ausgabe, nur PlainText)
-		$inline = <<<JS
-(function(){
-	'use strict';
-	function ready(fn){
-		if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',fn);}else{fn();}
-	}
-	async function fetchJson(url){
-		const res = await fetch(url, { credentials: 'same-origin' });
-		if(!res.ok){ throw new Error('QOTD fetch failed: '+res.status); }
-		return await res.json();
-	}
-	function setPlain(el, txt){ if(el) el.textContent = txt || ''; }
-	function renderMeta(authorEl, extraEl, author, extra){
-		setPlain(authorEl, author ? '— ' + author : '');
-		setPlain(extraEl, extra ? (author ? ' · ' : '— ') + extra : '');
-	}
-	async function init(){
-		if(!window.QOTD || !window.QOTD.endpoint){ return; }
-		const boxes = document.querySelectorAll('[data-qotd="1"]');
-		if(!boxes.length){ return; }
-
-		let data;
-		try{ data = await fetchJson(window.QOTD.endpoint); }catch(e){ return; }
-
-		boxes.forEach(function(box){
-			const textEl = box.querySelector('.qotd__text');
-			const authorEl = box.querySelector('.qotd__author');
-			const extraEl = box.querySelector('.qotd__source');
-			if(!textEl){ return; }
-
-			if(!data || !data.has_quote){
-				setPlain(textEl, '');
-				renderMeta(authorEl, extraEl, '', '');
-				return;
-			}
-
-			setPlain(textEl, data.text || '');
-			renderMeta(authorEl, extraEl, data.author || '', data.extra || '');
-		});
-	}
-	ready(init);
-})();
-JS;
-		wp_add_inline_script($handle, $inline, 'after');
 	}
 
 	public function shortcode(array $atts = []): string {
