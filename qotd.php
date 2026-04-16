@@ -277,7 +277,9 @@ final class QOTD_Plugin {
 	}
 
 	public function render_block( array $attributes ): string {
-		return $this->shortcode( [] );
+		// WordPress speichert das native "Zusätzliche CSS-Klasse"-Feld als className.
+		$css_class = isset( $attributes['className'] ) ? trim( (string) $attributes['className'] ) : '';
+		return $this->shortcode( $css_class !== '' ? [ 'class' => $css_class ] : [] );
 	}
 
 	public function register_assets(): void {
