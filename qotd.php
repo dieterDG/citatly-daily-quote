@@ -47,6 +47,9 @@ final class QOTD_Plugin {
 
 		add_action('wp_enqueue_scripts', [$instance, 'register_assets']);
 		add_action('init', [$instance, 'register_block']);
+
+		add_filter('manage_' . self::CPT . '_posts_columns', [$instance, 'admin_columns']);
+		add_action('manage_' . self::CPT . '_posts_custom_column', [$instance, 'admin_column_content'], 10, 2);
 	}
 
 	public function register_cpt(): void {
@@ -85,6 +88,28 @@ final class QOTD_Plugin {
 	 * Wenn kein Titel gesetzt ist, generieren wir ihn aus dem Zitat (PlainText).
 	 * So verschwindet "Automatisch gespeicherter Entwurf" aus der Liste.
 	 */
+	public function admin_columns(array $columns): array {
+		$new = [];
+		foreach ($columns as $key => $label) {
+			$new[$key] = $label;
+			if ($key === 'title') {
+				$new['qotd_author'] = __('Autor', 'qotd');
+				$new['qotd_extra']  = __('Zusatz', 'qotd');
+			}
+		}
+		return $new;
+	}
+
+	public function admin_column_content(string $column, int $post_id): void {
+		if ($column === 'qotd_author') {
+			$value = (string) get_post_meta($post_id, self::META_AUTHOR, true);
+			echo esc_html($value !== '' ? $value : '—');
+		} elseif ($column === 'qotd_extra') {
+			$value = (string) get_post_meta($post_id, self::META_EXTRA, true);
+			echo esc_html($value !== '' ? $value : '—');
+		}
+	}
+
 	public function autofill_title(array $data, array $postarr): array {
 		if (($data['post_type'] ?? '') !== self::CPT) {
 			return $data;
