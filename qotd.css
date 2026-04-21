@@ -1,0 +1,67 @@
+/*
+ * QOTD – Skeleton Loader
+ * Only layout-shift prevention and fade-in. No opinionated text styling.
+ * Override via --qotd-skeleton-base and --qotd-skeleton-shine in your theme.
+ */
+
+/* Fade-in after load */
+.qotd {
+  opacity: 1;
+  transition: opacity 0.35s ease;
+}
+
+.qotd[data-qotd-loading="1"] {
+  opacity: 1; /* container stays visible; children show skeleton */
+}
+
+/* Shared shimmer animation */
+@keyframes qotd-shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position:  400px 0; }
+}
+
+.qotd[data-qotd-loading="1"] .qotd__text,
+.qotd[data-qotd-loading="1"] .qotd__author {
+  color: transparent !important;
+  border-radius: 3px;
+  display: block;
+  min-height: 1em;
+  background-color: var(--qotd-skeleton-base, #e0e0e0);
+  background-image: linear-gradient(
+    90deg,
+    var(--qotd-skeleton-base,  #e0e0e0) 25%,
+    var(--qotd-skeleton-shine, #f0f0f0) 50%,
+    var(--qotd-skeleton-base,  #e0e0e0) 75%
+  );
+  background-size: 800px 100%;
+  animation: qotd-shimmer 1.4s ease-in-out infinite;
+}
+
+/* Single text placeholder line */
+.qotd[data-qotd-loading="1"] .qotd__text::after {
+  content: "";
+  display: block;
+  height: 1em;
+  margin-top: 0.45em;
+  border-radius: 3px;
+  width: 74%;
+  background-color: var(--qotd-skeleton-base, #e0e0e0);
+  background-image: linear-gradient(
+    90deg,
+    var(--qotd-skeleton-base,  #e0e0e0) 25%,
+    var(--qotd-skeleton-shine, #f0f0f0) 50%,
+    var(--qotd-skeleton-base,  #e0e0e0) 75%
+  );
+  background-size: 800px 100%;
+  animation: qotd-shimmer 1.4s ease-in-out infinite;
+}
+
+/* Meta placeholder (author line) */
+.qotd[data-qotd-loading="1"] .qotd__author {
+  width: 38%;
+  margin-top: 0.6em;
+}
+
+.qotd[data-qotd-loading="1"] .qotd__source {
+  display: none;
+}

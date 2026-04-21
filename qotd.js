@@ -10,9 +10,19 @@
     const endpoint = (window.QOTD && window.QOTD.endpoint) ? window.QOTD.endpoint : null;
     if (!endpoint) return;
 
+    // Dynamische min-height Berechnung
+    const lineHeight = parseFloat(getComputedStyle(container).lineHeight) || 24;
+    const estimatedHeight = lineHeight * 2; // 2 Zeilen
+    container.style.minHeight = estimatedHeight + 'px';
+    container.setAttribute("data-qotd-loading", "1");
+
     try {
       const res = await fetch(endpoint, { credentials: "same-origin" });
-      if (!res.ok) return;
+      if (!res.ok) {
+        container.removeAttribute("data-qotd-loading");
+        container.style.minHeight = ''; // ✅ OK - Fehlerfall
+        return;
+      }
 
       const data = await res.json();
       const textEl = container.querySelector(".qotd__text");
@@ -23,6 +33,8 @@
         setPlain(textEl, "");
         setPlain(authorEl, "");
         setPlain(sourceEl, "");
+        container.removeAttribute("data-qotd-loading");
+        container.style.minHeight = ''; // ✅ OK - Kein Zitat vorhanden
         return;
       }
 
@@ -31,11 +43,14 @@
       const author = (data.author || "").trim();
       const extra = (data.extra || "").trim();
 
-      // Typografische Trennung wie bisher (nur PlainText)
       setPlain(authorEl, author ? "— " + author : "");
       setPlain(sourceEl, extra ? (author ? " · " : "— ") + extra : "");
+
+      container.removeAttribute("data-qotd-loading");
+      // ✅ ZEILE 49 GELÖSCHT - min-height bleibt permanent!
     } catch (e) {
-      // absichtlich still
+      container.removeAttribute("data-qotd-loading");
+      container.style.minHeight = ''; // ✅ OK - Fehlerfall
     }
   }
 

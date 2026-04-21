@@ -2,7 +2,7 @@
 /**
  * Plugin Name: QOTD (Quote of the Day)
  * Description: CPT for quotes + display as quote of the day (AJAX/REST, cache-safe).
- * Version: 1.1.0
+ * Version: 1.2.0
  * Requires at least: 6.0
  * Requires PHP: 8.0
  * Author: Dieter Geiling
@@ -18,7 +18,7 @@ if (!defined('ABSPATH')) {
 }
 
 final class QOTD_Plugin {
-	private const VERSION = '1.1.0';
+	private const VERSION = '1.2.0';
 	private const CPT = 'qotd_quote';
 
 	// Plaintext-Metafelder
@@ -755,8 +755,15 @@ final class QOTD_Plugin {
 
 	public function register_assets(): void {
 		$handle = 'qotd-frontend';
-		$src = plugins_url('qotd.js', __FILE__);
-		wp_register_script($handle, $src, [], self::VERSION, true);
+
+		wp_register_style(
+			$handle,
+			plugins_url('qotd.css', __FILE__),
+			[],
+			self::VERSION
+		);
+
+		wp_register_script($handle, plugins_url('qotd.js', __FILE__), [], self::VERSION, true);
 
 		wp_localize_script($handle, 'QOTD', [
 			'endpoint' => esc_url_raw(rest_url(self::REST_NAMESPACE . self::REST_ROUTE)),
@@ -771,6 +778,7 @@ final class QOTD_Plugin {
 		$class = trim((string) $atts['class']);
 		$class_attr = $class !== '' ? ' ' . sanitize_html_class($class) : '';
 
+		wp_enqueue_style('qotd-frontend');
 		wp_enqueue_script('qotd-frontend');
 
 		$html  = '<div class="qotd' . $class_attr . '" data-qotd="1">';
