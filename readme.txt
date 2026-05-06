@@ -4,7 +4,7 @@ Tags: quote, quote of the day, shortcode, rest-api
 Requires at least: 6.0
 Tested up to: 6.7
 Requires PHP: 8.0
-Stable tag: 1.3.1
+Stable tag: 1.3.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -106,6 +106,10 @@ Yes. The plugin is fully translated into German (de_DE). The text domain is `qot
 
 == Changelog ==
 
+= 1.3.2 =
+* Improved daily quote selection: a fallback mechanism now ensures that the
+  same quote never appears on two consecutive days.
+
 = 1.3.1 =
 * Compatibility: Automatically registers the REST endpoint as an exception
   when the REST API is restricted via Perfmatters.
@@ -136,6 +140,9 @@ Yes. The plugin is fully translated into German (de_DE). The text domain is `qot
 * First public release
 
 == Upgrade Notice ==
+
+= 1.3.2 =
+Improved quote rotation. No manual steps required.
 
 = 1.3.1 =
 Compatibility update for Perfmatters users. No manual steps required.

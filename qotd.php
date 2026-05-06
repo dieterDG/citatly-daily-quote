@@ -1,8 +1,9 @@
 <?php
+
 /**
  * Plugin Name: QOTD (Quote of the Day)
  * Description: CPT for quotes + display as quote of the day (AJAX/REST, cache-safe).
- * Version: 1.3.1
+ * Version: 1.3.2
  * Requires at least: 6.0
  * Requires PHP: 8.0
  * Author: Dieter Geiling
@@ -17,8 +18,9 @@ if (!defined('ABSPATH')) {
 	exit;
 }
 
-final class QOTD_Plugin {
-	private const VERSION = '1.3.1';
+final class QOTD_Plugin
+{
+	private const VERSION = '1.3.2';
 	private const CPT = 'qotd_quote';
 
 	// Plaintext-Metafelder
@@ -32,7 +34,8 @@ final class QOTD_Plugin {
 	private const NONCE_ACTION = 'qotd_save_meta';
 	private const NONCE_NAME = '_qotd_nonce';
 
-	public static function init(): void {
+	public static function init(): void
+	{
 		$instance = new self();
 
 		add_action('init', [$instance, 'load_textdomain']);
@@ -56,16 +59,18 @@ final class QOTD_Plugin {
 		add_action('admin_menu', [$instance, 'register_help_page']);
 		add_action('admin_enqueue_scripts', [$instance, 'enqueue_admin_export_script']);
 		add_action('admin_post_qotd_import', [$instance, 'handle_import']);
-		
+
 		// Perfmatters REST-API Ausnahme automatisch setzen, falls REST-API via Perfmatters eingeschränkt
-		add_filter('perfmatters_rest_api_exceptions', [$instance, 'perfmatters_exceptions']);	
+		add_filter('perfmatters_rest_api_exceptions', [$instance, 'perfmatters_exceptions']);
 	}
 
-	public function load_textdomain(): void {
+	public function load_textdomain(): void
+	{
 		load_plugin_textdomain('qotd', false, dirname(plugin_basename(__FILE__)) . '/languages');
 	}
 
-	public function register_cpt(): void {
+	public function register_cpt(): void
+	{
 		$labels = [
 			'name'               => __('Quotes', 'qotd'),
 			'singular_name'      => __('Quote', 'qotd'),
@@ -101,7 +106,8 @@ final class QOTD_Plugin {
 	 * Wenn kein Titel gesetzt ist, generieren wir ihn aus dem Zitat (PlainText).
 	 * So verschwindet "Automatisch gespeicherter Entwurf" aus der Liste.
 	 */
-	public function admin_columns(array $columns): array {
+	public function admin_columns(array $columns): array
+	{
 		$new = [];
 		foreach ($columns as $key => $label) {
 			$new[$key] = $label;
@@ -113,7 +119,8 @@ final class QOTD_Plugin {
 		return $new;
 	}
 
-	public function admin_column_content(string $column, int $post_id): void {
+	public function admin_column_content(string $column, int $post_id): void
+	{
 		if ($column === 'qotd_author') {
 			$value = (string) get_post_meta($post_id, self::META_AUTHOR, true);
 			echo esc_html($value !== '' ? $value : '—');
@@ -123,7 +130,8 @@ final class QOTD_Plugin {
 		}
 	}
 
-	public function autofill_title(array $data, array $postarr): array {
+	public function autofill_title(array $data, array $postarr): array
+	{
 		if (($data['post_type'] ?? '') !== self::CPT) {
 			return $data;
 		}
@@ -156,7 +164,8 @@ final class QOTD_Plugin {
 		return $data;
 	}
 
-	public function register_meta_boxes(): void {
+	public function register_meta_boxes(): void
+	{
 		add_meta_box(
 			'qotd_meta',
 			__('Quote Details', 'qotd'),
@@ -167,13 +176,14 @@ final class QOTD_Plugin {
 		);
 	}
 
-	public function render_meta_box(\WP_Post $post): void {
+	public function render_meta_box(\WP_Post $post): void
+	{
 		$text = (string) get_post_meta($post->ID, self::META_TEXT, true);
 		$author = (string) get_post_meta($post->ID, self::META_AUTHOR, true);
 		$extra = (string) get_post_meta($post->ID, self::META_EXTRA, true);
 
 		wp_nonce_field(self::NONCE_ACTION, self::NONCE_NAME);
-		?>
+?>
 		<p>
 			<label for="qotd_text"><strong><?php echo esc_html(__('Quote', 'qotd')); ?></strong> <?php echo esc_html(__('(plain text only, no formatting)', 'qotd')); ?></label><br>
 			<textarea id="qotd_text" name="qotd_text" rows="6" style="width: 100%;" spellcheck="true"><?php echo esc_textarea($text); ?></textarea>
@@ -189,10 +199,11 @@ final class QOTD_Plugin {
 		<p style="color:#666;">
 			<?php echo esc_html(__('Note: Only plain text is stored and output (no links, no HTML).', 'qotd')); ?>
 		</p>
-		<?php
+	<?php
 	}
 
-	public function save_meta(int $post_id, \WP_Post $post): void {
+	public function save_meta(int $post_id, \WP_Post $post): void
+	{
 		if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
 			return;
 		}
@@ -220,7 +231,8 @@ final class QOTD_Plugin {
 		delete_transient('qotd_quote_ids');
 	}
 
-	public function register_rest(): void {
+	public function register_rest(): void
+	{
 		register_rest_route(self::REST_NAMESPACE, self::REST_ROUTE, [
 			'methods'             => \WP_REST_Server::READABLE,
 			'callback'            => [$this, 'rest_today'],
@@ -234,7 +246,8 @@ final class QOTD_Plugin {
 		]);
 	}
 
-	public function rest_export(\WP_REST_Request $request): \WP_REST_Response {
+	public function rest_export(\WP_REST_Request $request): \WP_REST_Response
+	{
 		$quotes = [];
 
 		foreach ($this->get_published_quote_ids() as $post_id) {
@@ -253,7 +266,8 @@ final class QOTD_Plugin {
 		return new \WP_REST_Response($quotes, 200);
 	}
 
-	public function rest_today(\WP_REST_Request $request): \WP_REST_Response {
+	public function rest_today(\WP_REST_Request $request): \WP_REST_Response
+	{
 		$quote = $this->get_quote_of_the_day();
 
 		$now = new \DateTimeImmutable('now', wp_timezone());
@@ -266,48 +280,63 @@ final class QOTD_Plugin {
 		return $response;
 	}
 
-	private function get_quote_of_the_day(): array {
+	private function get_quote_of_the_day(): array
+	{
 		$ids = $this->get_published_quote_ids();
 
 		if (empty($ids)) {
 			return [
 				'has_quote' => false,
-				'text' => '',
-				'author' => '',
-				'extra' => '',
+				'text'      => '',
+				'author'    => '',
+				'extra'     => '',
 			];
 		}
 
-		$tz = wp_timezone();
-		$today = (new \DateTimeImmutable('now', $tz))->format('Y-m-d');
-		$seed = crc32($today . '|' . home_url());
-		$index = (int) ($seed % count($ids));
-		$post_id = (int) $ids[$index];
+		$tz        = wp_timezone();
+		$count     = count($ids);
+		$today     = (new \DateTimeImmutable('now', $tz))->format('Y-m-d');
+		$yesterday = (new \DateTimeImmutable('yesterday', $tz))->format('Y-m-d');
+		$site      = home_url();
+
+		$index_today     = (int)(crc32($today     . '|' . $site) % $count);
+		$index_yesterday = (int)(crc32($yesterday . '|' . $site) % $count);
+
+		// Direkte Wiederholung verhindern: anderen Index per Fallback-Salt berechnen
+		if ($count > 1 && $index_today === $index_yesterday) {
+			$index_today = (int)(crc32($today . '|' . $site . '|fallback') % $count);
+			// Äußerste Absicherung falls Fallback ebenfalls kollidiert
+			if ($index_today === $index_yesterday) {
+				$index_today = ($index_today + 1) % $count;
+			}
+		}
+
+		$post_id = (int) $ids[$index_today];
 
 		$post = get_post($post_id);
 		if (!$post instanceof \WP_Post || $post->post_status !== 'publish') {
 			return [
 				'has_quote' => false,
-				'text' => '',
-				'author' => '',
-				'extra' => '',
+				'text'      => '',
+				'author'    => '',
+				'extra'     => '',
 			];
 		}
 
-		$text = (string) get_post_meta($post_id, self::META_TEXT, true);
+		$text   = (string) get_post_meta($post_id, self::META_TEXT,   true);
 		$author = (string) get_post_meta($post_id, self::META_AUTHOR, true);
-		$extra = (string) get_post_meta($post_id, self::META_EXTRA, true);
+		$extra  = (string) get_post_meta($post_id, self::META_EXTRA,  true);
 
-		// Rückgabe bleibt PlainText. Frontend rendert via textContent.
 		return [
 			'has_quote' => true,
-			'text' => $text,
-			'author' => $author,
-			'extra' => $extra,
+			'text'      => $text,
+			'author'    => $author,
+			'extra'     => $extra,
 		];
 	}
 
-	private function get_published_quote_ids(): array {
+	private function get_published_quote_ids(): array
+	{
 		$cached = get_transient('qotd_quote_ids');
 		if (is_array($cached) && !empty($cached)) {
 			return array_values(array_filter(array_map('intval', $cached)));
@@ -332,7 +361,8 @@ final class QOTD_Plugin {
 	// Import / Export
 	// -------------------------------------------------------------------------
 
-	public function register_admin_menu(): void {
+	public function register_admin_menu(): void
+	{
 		add_submenu_page(
 			'edit.php?post_type=' . self::CPT,
 			__('Import / Export', 'qotd'),
@@ -343,7 +373,8 @@ final class QOTD_Plugin {
 		);
 	}
 
-	public function render_import_export_page(): void {
+	public function render_import_export_page(): void
+	{
 		if (!current_user_can('manage_options')) {
 			wp_die(esc_html(__('No permission.', 'qotd')));
 		}
@@ -381,11 +412,12 @@ final class QOTD_Plugin {
 			$message = $messages[$key] ?? __('Unknown error.', 'qotd');
 			$notice  = '<div class="notice notice-error is-dismissible"><p>' . esc_html($message) . '</p></div>';
 		}
-		?>
+	?>
 		<div class="wrap">
 			<h1><?php echo esc_html(__('Quotes Import / Export', 'qotd')); ?></h1>
 
-			<?php echo $notice; // phpcs:ignore WordPress.Security.EscapeOutput -- vollständig escapet oben ?>
+			<?php echo $notice; // phpcs:ignore WordPress.Security.EscapeOutput -- vollständig escapet oben 
+			?>
 
 			<div style="display:grid;grid-template-columns:1fr 1fr;gap:2em;margin-top:1.5em;max-width:900px;">
 
@@ -419,10 +451,11 @@ final class QOTD_Plugin {
 
 			</div>
 		</div>
-		<?php
+	<?php
 	}
 
-	public function enqueue_admin_export_script(string $hook): void {
+	public function enqueue_admin_export_script(string $hook): void
+	{
 		// Nur auf der Import/Export-Seite laden.
 		// Hook-Name für Untermenü unter einem CPT: {post_type}_page_{menu_slug}
 		if ($hook !== 'qotd_quote_page_qotd-import-export') {
@@ -447,7 +480,8 @@ final class QOTD_Plugin {
 		]);
 	}
 
-	public function handle_import(): void {
+	public function handle_import(): void
+	{
 		check_admin_referer('qotd_import', 'qotd_import_nonce');
 
 		if (!current_user_can('manage_options')) {
@@ -565,12 +599,14 @@ final class QOTD_Plugin {
 		exit;
 	}
 
-	public function perfmatters_exceptions(array $exceptions): array {
+	public function perfmatters_exceptions(array $exceptions): array
+	{
 		$exceptions[] = 'qotd/v1/today';
 		return $exceptions;
 	}
 
-	private function get_existing_quote_texts(): array {
+	private function get_existing_quote_texts(): array
+	{
 		$texts = [];
 		foreach ($this->get_published_quote_ids() as $post_id) {
 			$text = (string) get_post_meta($post_id, self::META_TEXT, true);
@@ -585,7 +621,8 @@ final class QOTD_Plugin {
 	// Hilfeseite
 	// -------------------------------------------------------------------------
 
-	public function register_help_page(): void {
+	public function register_help_page(): void
+	{
 		add_submenu_page(
 			'edit.php?post_type=' . self::CPT,
 			__('Help', 'qotd'),
@@ -596,15 +633,16 @@ final class QOTD_Plugin {
 		);
 	}
 
-	public function render_help_page(): void {
+	public function render_help_page(): void
+	{
 		if (!current_user_can('edit_posts')) {
 			wp_die(esc_html(__('No permission.', 'qotd')));
 		}
 
 		$doc_url = get_locale() === 'de_DE'
-    		? 'https://qotd-plugin.com/de/docs/'
-    		: 'https://qotd-plugin.com/docs/';
-		?>
+			? 'https://qotd-plugin.com/de/docs/'
+			: 'https://qotd-plugin.com/docs/';
+	?>
 		<div class="notice notice-info">
 			<p>
 				<span class="dashicons dashicons-book-alt" style="vertical-align:middle;margin-right:4px;"></span>
@@ -624,8 +662,8 @@ final class QOTD_Plugin {
 
 		$rest_url  = esc_url(rest_url(self::REST_NAMESPACE . self::REST_ROUTE));
 		$pre_style = 'background:#f6f7f7;border:1px solid #dcdcde;border-radius:2px;'
-		           . 'padding:8px 10px;overflow-x:auto;font-size:13px;line-height:1.6;'
-		           . 'display:block;margin:4px 0 8px;white-space:pre;';
+			. 'padding:8px 10px;overflow-x:auto;font-size:13px;line-height:1.6;'
+			. 'display:block;margin:4px 0 8px;white-space:pre;';
 		?>
 		<div class="wrap">
 			<h1><?php echo esc_html(__('QOTD – Help', 'qotd')); ?></h1>
@@ -656,14 +694,14 @@ final class QOTD_Plugin {
 						<pre style="<?php echo esc_attr($pre_style); ?>">[qotd class="my-style"]</pre>
 						<p><?php echo esc_html(__('Generated HTML structure:', 'qotd')); ?></p>
 						<pre style="<?php echo esc_attr($pre_style); ?>"><?php echo esc_html(
-'<div class="qotd">
+																				'<div class="qotd">
   <div class="qotd__text"></div>
   <div class="qotd__meta">
     <span class="qotd__author"></span>
     <span class="qotd__source"></span>
   </div>
 </div>'
-						); ?></pre>
+																			); ?></pre>
 					</div>
 				</div>
 
@@ -692,11 +730,11 @@ final class QOTD_Plugin {
 						</ul>
 						<p><?php echo esc_html(__('Example:', 'qotd')); ?></p>
 						<pre style="<?php echo esc_attr($pre_style); ?>"><?php echo esc_html(
-'.qotd { max-width: 600px; }
+																				'.qotd { max-width: 600px; }
 .qotd__text { font-style: italic; font-size: 1.2em; }
 .qotd__author { font-weight: bold; }
 .qotd__source { color: #666; }'
-						); ?></pre>
+																			); ?></pre>
 					</div>
 				</div>
 
@@ -710,13 +748,13 @@ final class QOTD_Plugin {
 						<p><?php echo esc_html(__('Method: GET – no authentication required.', 'qotd')); ?></p>
 						<p><strong><?php echo esc_html(__('Response format:', 'qotd')); ?></strong></p>
 						<pre style="<?php echo esc_attr($pre_style); ?>"><?php echo esc_html(
-'{
+																				'{
   "has_quote": true,
   "text": "...",
   "author": "...",
   "extra": "..."
 }'
-						); ?></pre>
+																			); ?></pre>
 						<p><?php echo esc_html(__('The response includes Cache-Control headers. The quote changes at midnight (site timezone).', 'qotd')); ?></p>
 					</div>
 				</div>
@@ -730,14 +768,14 @@ final class QOTD_Plugin {
 						<p><?php echo esc_html(__('Format: JSON array of objects with the fields text (required), author and extra (both optional).', 'qotd')); ?></p>
 						<p><?php echo esc_html(__('Example:', 'qotd')); ?></p>
 						<pre style="<?php echo esc_attr($pre_style); ?>"><?php echo esc_html(
-'[
+																				'[
   {
     "text": "Quote text",
     "author": "Author Name",
     "extra": "Source"
   }
 ]'
-						); ?></pre>
+																			); ?></pre>
 						<ul style="margin:.5em 0 0 1.5em;list-style:disc;">
 							<li><?php echo esc_html(__('Quotes with identical text are skipped (duplicate check).', 'qotd')); ?></li>
 							<li><?php echo esc_html(__('Maximum file size: 2 MB.', 'qotd')); ?></li>
@@ -760,29 +798,32 @@ final class QOTD_Plugin {
 
 			</div>
 		</div>
-		<?php
+<?php
 	}
 
 	// -------------------------------------------------------------------------
 
-	public function register_block(): void {
+	public function register_block(): void
+	{
 		$build_dir = __DIR__ . '/build';
-		if ( ! file_exists( $build_dir . '/block.json' ) ) {
+		if (! file_exists($build_dir . '/block.json')) {
 			return;
 		}
 
-		register_block_type( $build_dir, [
+		register_block_type($build_dir, [
 			'render_callback' => [$this, 'render_block'],
-		] );
+		]);
 	}
 
-	public function render_block( array $attributes ): string {
+	public function render_block(array $attributes): string
+	{
 		// WordPress speichert das native "Zusätzliche CSS-Klasse"-Feld als className.
-		$css_class = isset( $attributes['className'] ) ? trim( (string) $attributes['className'] ) : '';
-		return $this->shortcode( $css_class !== '' ? [ 'class' => $css_class ] : [] );
+		$css_class = isset($attributes['className']) ? trim((string) $attributes['className']) : '';
+		return $this->shortcode($css_class !== '' ? ['class' => $css_class] : []);
 	}
 
-	public function register_assets(): void {
+	public function register_assets(): void
+	{
 		$handle = 'qotd-frontend';
 
 		wp_register_style(
@@ -799,7 +840,8 @@ final class QOTD_Plugin {
 		]);
 	}
 
-	public function shortcode(array $atts = []): string {
+	public function shortcode(array $atts = []): string
+	{
 		$atts = shortcode_atts([
 			'class' => '',
 		], $atts, self::SHORTCODE);
