@@ -33,7 +33,7 @@ The displayed quote changes once per day and is selected deterministically based
 
 **How the daily quote is selected:**
 
-The plugin uses a deterministic algorithm: `crc32(date + site_url)` maps today's date to a fixed quote from your collection. This means the quote is stable throughout the day, works correctly even with full-page caching, and does not require any session or cookie.
+The plugin uses a deterministic algorithm: `crc32(date + site_url)` maps today's date to a fixed quote from your collection. A fallback mechanism ensures that the same quote never appears on two consecutive days. This means the quote is stable throughout the day, works correctly even with full-page caching, and does not require any session or cookie.
 
 **CSS structure:**
 
