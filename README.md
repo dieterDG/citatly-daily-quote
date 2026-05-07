@@ -73,7 +73,7 @@ Full documentation is available at **[qotd-plugin.com](https://qotd-plugin.com)*
 - [REST API Reference](https://qotd-plugin.com/docs/)
 - [Import/Export](https://qotd-plugin.com/docs/)
 
-German documentation: [qotd-plugin.com/de](https://qotd-plugin.com/de/docs)
+German documentation: [qotd-plugin.com/de/docs](https://qotd-plugin.com/de/docs)
 
 ## 🎯 How It Works
 
