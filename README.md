@@ -67,11 +67,12 @@ Response:
 
 Full documentation is available at **[qotd-plugin.com](https://qotd-plugin.com)**:
 
-- [Installation & Setup](https://qotd-plugin.com/docs/)
-- [Shortcode & Block Usage](https://qotd-plugin.com/docs/)
-- [CSS Customization](https://qotd-plugin.com/docs/)
-- [REST API Reference](https://qotd-plugin.com/docs/)
-- [Import/Export](https://qotd-plugin.com/docs/)
+- [Installation & Setup](https://qotd-plugin.com/docs/installation)
+- [Shortcode Usage](https://qotd-plugin.com/docs/shortcode)
+- [Block Usage](https://qotd-plugin.com/docs/block)
+- [CSS Customization](https://qotd-plugin.com/docs/css-styling)
+- [REST API Reference](https://qotd-plugin.com/docs/rest-api)
+- [Import/Export](https://qotd-plugin.com/docs/import-export)
 
 German documentation: [qotd-plugin.com/de/docs](https://qotd-plugin.com/de/docs)
 
