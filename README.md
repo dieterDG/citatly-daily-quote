@@ -1,8 +1,6 @@
 # QOTD – Quote of the Day
 
-[![WordPress Plugin Version](https://img.shields.io/wordpress/plugin/v/qotd?label=Version&logo=wordpress)](https://wordpress.org/plugins/qotd/)
 [![License: GPLv2](https://img.shields.io/badge/License-GPLv2-blue.svg)](https://www.gnu.org/licenses/gpl-2.0.html)
-[![WordPress Compatibility](https://img.shields.io/wordpress/plugin/tested/qotd?label=Tested%20up%20to&logo=wordpress)](https://wordpress.org/plugins/qotd/)
 
 Display a new quote every day — delivered cache-safely via the WordPress REST API.
 
@@ -141,14 +139,13 @@ This plugin is licensed under the **GPLv2 or later**. See [LICENSE](LICENSE) for
 
 QOTD is free and always will be. If you find it useful, consider supporting the project:
 
-- [Ko-fi Donation](https://ko-fi.com/dieterDG)
+- [Ko-fi Donation](https://ko-fi.com/dieterdg)
 - [GitHub Sponsors](https://github.com/sponsors/dieterDG) _(coming soon)_
 
 Or simply give the repo a ⭐ if you like it!
 
 ## 🔗 Links
 
-- [WordPress.org Plugin Directory](https://wordpress.org/plugins/qotd/)
 - [Official Website](https://qotd-plugin.com)
 - [GitHub Repository](https://github.com/dieterDG/qotd-plugin)
 
