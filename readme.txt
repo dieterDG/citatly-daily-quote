@@ -106,6 +106,9 @@ Yes. The plugin is fully translated into German (de_DE). The text domain is `qot
 
 == Changelog ==
 
+= 1.3.3 =
+* Block: Title and block name changed to English ("Quote of the Day") for consistency with the plugin name on wordpress.org. The editor preview text remains translated.
+
 = 1.3.2 =
 * Improved daily quote selection: a fallback mechanism now ensures that the
   same quote never appears on two consecutive days.
