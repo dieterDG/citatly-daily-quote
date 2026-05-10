@@ -317,3 +317,8 @@ msgstr ""
 #: qotd.php
 msgid "Optional. If left empty, the title is generated automatically from the first 80 characters of the quote text."
 msgstr ""
+
+#: qotd.php
+#. translators: %s: URL to the CSS styling documentation page
+msgid "Interactive examples are available at <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">qotd-plugin.com/docs/css-styling</a>."
+msgstr ""

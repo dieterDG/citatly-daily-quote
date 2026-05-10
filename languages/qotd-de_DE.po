@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: QOTD 1.1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/qotd\n"
 "POT-Creation-Date: 2026-04-17T00:00:00+00:00\n"
-"PO-Revision-Date: 2026-05-07 20:01+0200\n"
+"PO-Revision-Date: 2026-05-10 09:52+0200\n"
 "Last-Translator: Dieter Geiling <dieter@space-in.de>\n"
 "Language-Team: German <de@li.org>\n"
 "Language: de_DE\n"
@@ -229,9 +229,7 @@ msgstr "Der QOTD-Block ist im Block-Editor verfügbar. Er benötigt das kompilie
 
 #: qotd.php
 msgid "The block supports the native WordPress \"Additional CSS class(es)\" field (className). The class is passed directly to the shortcode output."
-msgstr ""
-"Der Block unterstützt das native WordPress-Feld \"Zusätzliche CSS-Klasse(n)\" (className). Die Klasse wird direkt an die Shortcode-Ausgabe "
-"weitergegeben."
+msgstr "Der Block unterstützt das native WordPress-Feld \"Zusätzliche CSS-Klasse(n)\" (className). Die Klasse wird direkt an die Shortcode-Ausgabe weitergegeben."
 
 #: qotd.php
 msgid "CSS Customization"
@@ -340,3 +338,8 @@ msgstr "Zeigt das tägliche Zitat dynamisch per REST-API an."
 #: qotd.php
 msgid "The most up-to-date documentation is available at <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\">%2$s</a>."
 msgstr "Die aktuellste Dokumentation ist verfügbar unter <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\">qotd-plugin.com/de/docs</a>."
+
+#. translators: %s: URL to the CSS styling documentation page
+#: qotd.php
+msgid "Interactive examples are available at <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">qotd-plugin.com/docs/css-styling</a>."
+msgstr "Interaktive Beispiele sind verfügbar unter <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">qotd-plugin.com/de/docs/css-anpassung</a>."

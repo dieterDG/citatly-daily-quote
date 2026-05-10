@@ -750,6 +750,22 @@ final class QOTD_Plugin
 .qotd__author { font-weight: bold; }
 .qotd__source { color: #666; }'
 																			); ?></pre>
+						<p style="margin-top:8px;">
+							<span class="dashicons dashicons-external" style="vertical-align:middle;margin-right:4px;" aria-hidden="true"></span>
+							<?php
+							$css_doc_url = get_user_locale() === 'de_DE'
+								? 'https://qotd-plugin.com/de/docs/css-anpassung/'
+								: 'https://qotd-plugin.com/docs/css-styling/';
+							echo wp_kses(
+								sprintf(
+									/* translators: %s: URL to the CSS styling documentation page */
+									__('Interactive examples are available at <a href="%s" target="_blank" rel="noopener noreferrer">qotd-plugin.com/docs/css-styling</a>.', 'qotd'),
+									esc_url($css_doc_url)
+								),
+								['a' => ['href' => [], 'target' => [], 'rel' => []]]
+							);
+							?>
+						</p>
 					</div>
 				</div>
 
