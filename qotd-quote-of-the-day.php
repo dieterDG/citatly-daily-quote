@@ -10,7 +10,7 @@
  * Author URI: https://qotd-plugin.com
  * License: GPLv2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain: qotd-quote-of-the-day
+ * Text Domain: qotd
  */
 
 declare(strict_types=1);
@@ -70,7 +70,7 @@ final class QOTD_Plugin
 
 	public function load_textdomain(): void
 	{
-		$result = load_plugin_textdomain('qotd-quote-of-the-day', false, dirname(plugin_basename(__FILE__)) . '/languages');
+		$result = load_plugin_textdomain('qotd', false, dirname(plugin_basename(__FILE__)) . '/languages');
 	}
 
 	public function register_cpt(): void
