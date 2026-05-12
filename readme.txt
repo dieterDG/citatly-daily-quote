@@ -16,6 +16,8 @@ QOTD (Quote of the Day) adds a dedicated custom post type for quotes and automat
 
 The displayed quote changes once per day and is selected deterministically based on the current date — no randomness involved, so every visitor sees the same quote on the same day. Delivery is cache-safe via a REST API endpoint that sends appropriate HTTP caching headers, making it fully compatible with full-page caches and CDNs.
 
+**Live demo & documentation:** See the plugin in action at https://qotd-plugin.com
+
 **Für deutschsprachige Nutzer:**
 
 Das Plugin „Zitat des Tages" ist vollständig auf Deutsch übersetzt (de_DE). Es zeigt täglich ein neues Zitat aus deiner eigenen Sammlung — cache-sicher, ohne externe Abhängigkeiten und ohne API-Schlüssel. Dokumentation auf Deutsch: https://qotd-plugin.com/de/docs
@@ -82,11 +84,11 @@ Yes. Go to "Quotes → Import / Export" in the admin. Upload a JSON file contain
 
 = Does the plugin store HTML in quotes? =
 
-No. All fields (text, author, extra) are stored and output as plain text only. This prevents XSS issues and keeps quotes portable.
+No. All fields (text, author, extra) are stored and output as plain text only. This prevents XSS issues and keeps quotes portable. Line breaks entered in the text field are preserved in the frontend output.
 
 = Can I style the output? =
 
-Yes. The plugin outputs a simple HTML structure with BEM-style CSS classes. Add your own styles in your theme's stylesheet or via the WordPress Customizer.
+Yes. The plugin outputs a simple HTML structure with BEM-style CSS classes. Add your own styles in your theme's stylesheet or via the WordPress Customizer. Interactive examples are available at https://qotd-plugin.com/docs/css-styling
 
 = Does the plugin work with the block editor? =
 
