@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Plugin Name: QOTD (Quote of the Day)
+ * Plugin Name: QOTD - Quote of the Day
  * Description: CPT for quotes + display as quote of the day (AJAX/REST, cache-safe).
  * Version: 1.3.3
  * Requires at least: 6.0
