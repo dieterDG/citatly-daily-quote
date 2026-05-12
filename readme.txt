@@ -1,10 +1,10 @@
 === QOTD – Quote of the Day ===
 Contributors: dietergeiling
-Tags: quote, quote of the day, shortcode, rest-api
+Tags: quote, quotes, quote of the day, shortcode, daily quote
 Requires at least: 6.0
-Tested up to: 6.7
+Tested up to: 6.9
 Requires PHP: 8.0
-Stable tag: 1.3.2
+Stable tag: 1.3.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -15,6 +15,10 @@ Display a new quote every day — delivered cache-safely via the WordPress REST 
 QOTD (Quote of the Day) adds a dedicated custom post type for quotes and automatically displays one of them each day on your website.
 
 The displayed quote changes once per day and is selected deterministically based on the current date — no randomness involved, so every visitor sees the same quote on the same day. Delivery is cache-safe via a REST API endpoint that sends appropriate HTTP caching headers, making it fully compatible with full-page caches and CDNs.
+
+**Für deutschsprachige Nutzer:**
+
+Das Plugin „Zitat des Tages" ist vollständig auf Deutsch übersetzt (de_DE). Es zeigt täglich ein neues Zitat aus deiner eigenen Sammlung — cache-sicher, ohne externe Abhängigkeiten und ohne API-Schlüssel. Dokumentation auf Deutsch: https://qotd-plugin.com/de/docs
 
 **Features:**
 
@@ -110,13 +114,11 @@ Yes. The plugin is fully translated into German (de_DE). The text domain is `qot
 * Block: Title and block name changed to English ("Quote of the Day") for consistency with the plugin name on wordpress.org. The editor preview text remains translated.
 
 = 1.3.2 =
-* Improved daily quote selection: a fallback mechanism now ensures that the
-  same quote never appears on two consecutive days.
+* Improved daily quote selection: a fallback mechanism now ensures that the same quote never appears on two consecutive days.
 
 = 1.3.1 =
-* Compatibility: Automatically registers the REST endpoint as an exception
-  when the REST API is restricted via Perfmatters.
-  
+* Compatibility: Automatically registers the REST endpoint as an exception when the REST API is restricted via Perfmatters.
+
 = 1.3.0 =
 * Added CLS-optimized skeleton loader with shimmer animation
 * Dynamic min-height calculation prevents layout shift during quote loading
@@ -143,6 +145,9 @@ Yes. The plugin is fully translated into German (de_DE). The text domain is `qot
 * First public release
 
 == Upgrade Notice ==
+
+= 1.3.3 =
+Block name updated to English. No manual steps required.
 
 = 1.3.2 =
 Improved quote rotation. No manual steps required.
