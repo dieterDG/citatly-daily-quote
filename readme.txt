@@ -70,6 +70,10 @@ All styling of the output (`.qotd`, `.qotd__text`, `.qotd__author`, `.qotd__sour
 
 No. The quote is selected once per day based on the current date. All visitors see the same quote throughout the day, regardless of caching.
 
+= Why the current quote may change =
+
+The quote of the day is selected based on the date and the total number of published quotes. Adding, deleting, or unpublishing a quote may cause today's displayed quote to change. From the next day on, everything works as normal again.
+
 = Is the plugin compatible with caching plugins and CDNs? =
 
 Yes. The REST endpoint returns proper `Cache-Control` and `Expires` headers that expire at midnight. It works correctly with WP Rocket, W3 Total Cache, LiteSpeed Cache, Cloudflare, and similar solutions.
