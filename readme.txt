@@ -4,7 +4,7 @@ Tags: quote, quotes, quote of the day, shortcode, daily quote
 Requires at least: 6.0
 Tested up to: 6.9
 Requires PHP: 8.0
-Stable tag: 1.3.3
+Stable tag: 1.3.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -112,6 +112,9 @@ Yes. The plugin is fully translated into German (de_DE). The text domain is `qot
 
 == Changelog ==
 
+= 1.3.4 =
+* Fix: Transient cache for quote IDs is now invalidated when a quote is trashed or deleted. Previously, deleting a quote could result in no quote being displayed until the cache expired on its own
+
 = 1.3.3 =
 * Block: Title and block name changed to English ("Quote of the Day") for consistency with the plugin name on wordpress.org. The editor preview text remains translated
 
@@ -144,6 +147,9 @@ Yes. The plugin is fully translated into German (de_DE). The text domain is `qot
 * Initial release
 
 == Upgrade Notice ==
+
+= 1.3.4 =
+Fixes a bug where deleting a quote could leave the frontend empty until the cache expired.
 
 = 1.3.3 =
 Block name updated to English. No manual steps required.
