@@ -3,7 +3,7 @@
 /**
  * Plugin Name: QOTD - Quote of the Day
  * Description: CPT for quotes + display as quote of the day (AJAX/REST, cache-safe).
- * Version: 1.3.3
+ * Version: 1.3.4
  * Requires at least: 6.0
  * Requires PHP: 8.0
  * Author: Dieter Geiling
@@ -21,7 +21,7 @@ if (!defined('ABSPATH')) {
 
 final class QOTD_Plugin
 {
-	private const VERSION = '1.3.3';
+	private const VERSION = '1.3.4';
 	private const CPT = 'qotd_quote';
 
 	// Plaintext-Metafelder
@@ -43,6 +43,8 @@ final class QOTD_Plugin
 		add_action('init', [$instance, 'register_cpt']);
 		add_action('add_meta_boxes', [$instance, 'register_meta_boxes']);
 		add_action('save_post_' . self::CPT, [$instance, 'save_meta'], 10, 2);
+		add_action('trashed_post', [$instance, 'invalidate_ids_cache']);
+		add_action('deleted_post', [$instance, 'invalidate_ids_cache']);
 
 		// Titel automatisch füllen, wenn leer (aus dem Zitat-Text)
 		add_filter('wp_insert_post_data', [$instance, 'autofill_title'], 10, 2);
@@ -243,6 +245,16 @@ final class QOTD_Plugin
 		update_post_meta($post_id, self::META_EXTRA, $extra);
 
 		delete_transient('qotd_quote_ids');
+	}
+
+	/**
+	 * Cache invalidieren wenn ein Zitat gelöscht oder in den Papierkorb verschoben wird.
+	 */
+	public function invalidate_ids_cache(int $post_id): void
+	{
+		if (get_post_type($post_id) === self::CPT) {
+			delete_transient('qotd_quote_ids');
+		}
 	}
 
 	public function register_rest(): void
