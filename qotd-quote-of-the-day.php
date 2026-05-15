@@ -59,6 +59,9 @@ final class QOTD_Plugin
 		add_filter('manage_' . self::CPT . '_posts_columns', [$instance, 'admin_columns']);
 		add_action('manage_' . self::CPT . '_posts_custom_column', [$instance, 'admin_column_content'], 10, 2);
 
+		// Stabile Sortierung in der Admin-Liste: post_date + ID verhindert Duplikate bei Paginierung
+		add_action('pre_get_posts', [$instance, 'stable_admin_sort']);
+
 		add_action('admin_menu', [$instance, 'register_admin_menu']);
 		add_action('admin_menu', [$instance, 'register_help_page']);
 		add_action('admin_enqueue_scripts', [$instance, 'enqueue_admin_export_script']);
@@ -133,6 +136,32 @@ final class QOTD_Plugin
 		} elseif ($column === 'qotd_extra') {
 			$value = (string) get_post_meta($post_id, self::META_EXTRA, true);
 			echo esc_html($value !== '' ? $value : '—');
+		}
+	}
+
+	/**
+	 * Stabile Sortierung in der Admin-Liste.
+	 *
+	 * Beim Import erhalten alle Zitate dasselbe post_date. Ohne sekundäres
+	 * Sortierkriterium ist die Reihenfolge bei identischem Datum nicht
+	 * deterministisch — MySQL kann Posts zwischen LIMIT-Abfragen (Seiten)
+	 * verschieben, sodass ein Eintrag auf zwei Seiten erscheint.
+	 */
+	public function stable_admin_sort(\WP_Query $query): void
+	{
+		if (!is_admin() || !$query->is_main_query()) {
+			return;
+		}
+		if ($query->get('post_type') !== self::CPT) {
+			return;
+		}
+
+		$orderby = $query->get('orderby');
+
+		// Nur eingreifen bei Standard-Sortierung (Datum) oder wenn nicht explizit anders gesetzt
+		if ($orderby === '' || $orderby === 'date') {
+			$order = $query->get('order') ?: 'DESC';
+			$query->set('orderby', ['date' => $order, 'ID' => $order]);
 		}
 	}
 
