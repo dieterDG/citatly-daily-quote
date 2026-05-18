@@ -20,7 +20,7 @@ The displayed quote changes once per day and is selected deterministically based
 
 **Für deutschsprachige Nutzer:**
 
-Das Plugin „Zitat des Tages" ist vollständig auf Deutsch übersetzt (de_DE). Es zeigt täglich ein neues Zitat aus deiner eigenen Sammlung — cache-sicher, ohne externe Abhängigkeiten und ohne API-Schlüssel. Dokumentation auf Deutsch: https://qotd-plugin.com/de/docs
+Das Plugin „Zitat des Tages" ist vollständig auf Deutsch übersetzt (de_DE). Es zeigt täglich ein neues Zitat aus deiner eigenen Sammlung — cache-sicher, ohne externe Abhängigkeiten und ohne API-Schlüssel. Live-Demo & Dokumentation auf Deutsch: https://qotd-plugin.com/de/
 
 **Features:**
 
