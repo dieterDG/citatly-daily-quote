@@ -1,5 +1,5 @@
 === QOTD - Quote of the Day ===
-Contributors: dietergeiling
+Contributors: dieter93
 Tags: quote, quotes, quote of the day, shortcode, daily quote
 Requires at least: 6.0
 Tested up to: 6.9
