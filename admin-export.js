@@ -15,8 +15,8 @@
 	}
 
 	document.addEventListener('DOMContentLoaded', function () {
-		var btn    = document.getElementById('qotd-export-btn');
-		var status = document.getElementById('qotd-export-status');
+		var btn    = document.getElementById('citatly-export-btn');
+		var status = document.getElementById('citatly-export-status');
 
 		if (!btn) {
 			return;
@@ -24,14 +24,14 @@
 
 		btn.addEventListener('click', function () {
 			btn.disabled    = true;
-			btn.textContent = QOTDExport.labelLoading;
+			btn.textContent = CitatlyExport.labelLoading;
 			status.textContent = '';
 
-			fetch(QOTDExport.endpoint, {
+			fetch(CitatlyExport.endpoint, {
 				method: 'GET',
 				credentials: 'same-origin',
 				headers: {
-					'X-WP-Nonce': QOTDExport.nonce,
+					'X-WP-Nonce': CitatlyExport.nonce,
 				},
 			})
 				.then(function (res) {
@@ -41,15 +41,15 @@
 					return res.json();
 				})
 				.then(function (data) {
-					triggerDownload(JSON.stringify(data, null, 2), QOTDExport.filename);
+					triggerDownload(JSON.stringify(data, null, 2), CitatlyExport.filename);
 				})
 				.catch(function (err) {
-					status.textContent = QOTDExport.labelError + ' ' + err.message;
+					status.textContent = CitatlyExport.labelError + ' ' + err.message;
 					status.style.color = '#d63638';
 				})
 				.finally(function () {
 					btn.disabled    = false;
-					btn.textContent = QOTDExport.labelExport;
+					btn.textContent = CitatlyExport.labelExport;
 				});
 		});
 	});

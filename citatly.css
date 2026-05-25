@@ -1,0 +1,67 @@
+/*
+ * Citatly – Skeleton Loader
+ * Only layout-shift prevention and fade-in. No opinionated text styling.
+ * Override via --citatly-skeleton-base and --citatly-skeleton-shine in your theme.
+ */
+
+/* Fade-in after load */
+.citatly {
+  opacity: 1;
+  transition: opacity 0.35s ease;
+}
+
+.citatly[data-citatly-loading="1"] {
+  opacity: 1; /* container stays visible; children show skeleton */
+}
+
+/* Shared shimmer animation */
+@keyframes citatly-shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position:  400px 0; }
+}
+
+.citatly[data-citatly-loading="1"] .citatly__text,
+.citatly[data-citatly-loading="1"] .citatly__author {
+  color: transparent !important;
+  border-radius: 3px;
+  display: block;
+  min-height: 1em;
+  background-color: var(--citatly-skeleton-base, #e0e0e0);
+  background-image: linear-gradient(
+    90deg,
+    var(--citatly-skeleton-base,  #e0e0e0) 25%,
+    var(--citatly-skeleton-shine, #f0f0f0) 50%,
+    var(--citatly-skeleton-base,  #e0e0e0) 75%
+  );
+  background-size: 800px 100%;
+  animation: citatly-shimmer 1.4s ease-in-out infinite;
+}
+
+/* Single text placeholder line */
+.citatly[data-citatly-loading="1"] .citatly__text::after {
+  content: "";
+  display: block;
+  height: 1em;
+  margin-top: 0.45em;
+  border-radius: 3px;
+  width: 74%;
+  background-color: var(--citatly-skeleton-base, #e0e0e0);
+  background-image: linear-gradient(
+    90deg,
+    var(--citatly-skeleton-base,  #e0e0e0) 25%,
+    var(--citatly-skeleton-shine, #f0f0f0) 50%,
+    var(--citatly-skeleton-base,  #e0e0e0) 75%
+  );
+  background-size: 800px 100%;
+  animation: citatly-shimmer 1.4s ease-in-out infinite;
+}
+
+/* Meta placeholder (author line) */
+.citatly[data-citatly-loading="1"] .citatly__author {
+  width: 38%;
+  margin-top: 0.6em;
+}
+
+.citatly[data-citatly-loading="1"] .citatly__source {
+  display: none;
+}

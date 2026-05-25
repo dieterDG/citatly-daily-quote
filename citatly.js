@@ -14,30 +14,30 @@
   }
 
   async function loadQuote(container) {
-    const endpoint = (window.QOTD && window.QOTD.endpoint) ? window.QOTD.endpoint : null;
+    const endpoint = (window.Citatly && window.Citatly.endpoint) ? window.Citatly.endpoint : null;
     if (!endpoint) return;
 
     // Initiale min-height: geschätzte 2 Zeilen
     const lineHeight = parseFloat(getComputedStyle(container).lineHeight) || 24;
     container.style.minHeight = (lineHeight * 2) + 'px';
-    container.setAttribute("data-qotd-loading", "1");
+    container.setAttribute("data-citatly-loading", "1");
 
     try {
       const res = await fetch(endpoint, { credentials: "same-origin" });
       if (!res.ok) {
-        container.removeAttribute("data-qotd-loading");
+        container.removeAttribute("data-citatly-loading");
         container.style.minHeight = '';
         return;
       }
 
       const data = await res.json();
-      const textEl = container.querySelector(".qotd__text");
-      const metaEl = container.querySelector(".qotd__meta");
+      const textEl = container.querySelector(".citatly__text");
+      const metaEl = container.querySelector(".citatly__meta");
 
       if (!data || !data.has_quote) {
         setPlain(textEl, "");
         if (metaEl) metaEl.innerHTML = "";
-        container.removeAttribute("data-qotd-loading");
+        container.removeAttribute("data-citatly-loading");
         container.style.minHeight = '';
         return;
       }
@@ -52,44 +52,44 @@
         metaEl.innerHTML = "";
 
         if (author || extra) {
-          metaEl.appendChild(createSeparator("qotd__separator", "— "));
+          metaEl.appendChild(createSeparator("citatly__separator", "— "));
         }
 
         if (author) {
           var authorEl = document.createElement("span");
-          authorEl.className = "qotd__author";
+          authorEl.className = "citatly__author";
           authorEl.textContent = author;
           metaEl.appendChild(authorEl);
         }
 
         if (author && extra) {
-          metaEl.appendChild(createSeparator("qotd__divider", " · "));
+          metaEl.appendChild(createSeparator("citatly__divider", " · "));
         }
 
         if (extra) {
           var sourceEl = document.createElement("span");
-          sourceEl.className = "qotd__source";
+          sourceEl.className = "citatly__source";
           sourceEl.textContent = extra;
           metaEl.appendChild(sourceEl);
         }
       }
 
-      container.removeAttribute("data-qotd-loading");
-      
+      container.removeAttribute("data-citatly-loading");
+
       // WICHTIG: Min-height auf AKTUELLE Höhe setzen (nach dem Text geladen ist)
       requestAnimationFrame(() => {
         const actualHeight = container.getBoundingClientRect().height;
         container.style.minHeight = actualHeight + 'px';
       });
-      
+
     } catch (e) {
-      container.removeAttribute("data-qotd-loading");
+      container.removeAttribute("data-citatly-loading");
       container.style.minHeight = '';
     }
   }
 
   function initAll() {
-    const nodes = document.querySelectorAll('[data-qotd="1"]');
+    const nodes = document.querySelectorAll('[data-citatly="1"]');
     nodes.forEach(loadQuote);
   }
 

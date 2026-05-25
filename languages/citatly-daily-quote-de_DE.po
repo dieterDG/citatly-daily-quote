@@ -1,14 +1,14 @@
-# German translation of the QOTD plugin.
+# German translation of the Citatly plugin.
 # Copyright (C) 2024 Dieter Geiling
-# This file is distributed under the same license as the QOTD plugin.
+# This file is distributed under the same license as the Citatly plugin.
 # Dieter Geiling <dieter@space-in.de>, 2024.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: QOTD 1.1.0\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/qotd\n"
-"POT-Creation-Date: 2026-04-17T00:00:00+00:00\n"
-"PO-Revision-Date: 2026-05-17 17:53+0200\n"
+"Project-Id-Version: Citatly 1.3.5\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/citatly-daily-quote\n"
+"POT-Creation-Date: 2026-05-25T00:00:00+00:00\n"
+"PO-Revision-Date: 2026-05-25 00:00+0200\n"
 "Last-Translator: Dieter Geiling <dieter@space-in.de>\n"
 "Language-Team: German <de@li.org>\n"
 "Language: de_DE\n"
@@ -17,305 +17,305 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.9\n"
-"X-Domain: qotd-quote-of-the-day\n"
+"X-Domain: citatly-daily-quote\n"
 
 #. Plugin Name of the plugin
-msgid "QOTD (Quote of the Day)"
-msgstr "QOTD (Zitat des Tages)"
+msgid "Citatly - Daily Quote"
+msgstr "Citatly – Tägliches Zitat"
 
 #. Description of the plugin
 msgid "CPT for quotes + display as quote of the day (AJAX/REST, cache-safe)."
 msgstr "CPT für Zitate + Ausgabe als Zitat des Tages (AJAX/REST, cache-sicher)."
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "Quotes"
 msgstr "Zitate"
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "Quote"
 msgstr "Zitat"
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "Add New"
 msgstr "Neu hinzufügen"
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "Add New Quote"
 msgstr "Neues Zitat hinzufügen"
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "Edit Quote"
 msgstr "Zitat bearbeiten"
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "New Quote"
 msgstr "Neues Zitat"
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "View Quote"
 msgstr "Zitat ansehen"
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "Search Quotes"
 msgstr "Zitate suchen"
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "No quotes found"
 msgstr "Keine Zitate gefunden"
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "No quotes found in Trash"
 msgstr "Keine Zitate im Papierkorb"
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "Author"
 msgstr "Autor"
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "Additional Info"
 msgstr "Zusatz"
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "Quote Details"
 msgstr "Zitat-Details"
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "(plain text only, no formatting)"
 msgstr "(nur Text, keine Formatierung)"
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "(optional)"
 msgstr "(optional)"
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "Note: Only plain text is stored and output (no links, no HTML)."
 msgstr "Hinweis: Es wird ausschließlich PlainText gespeichert und ausgegeben (keine Links, kein HTML)."
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "No permission."
 msgstr "Keine Berechtigung."
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "Import / Export"
 msgstr "Import / Export"
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "Quotes Import / Export"
 msgstr "Zitate Import / Export"
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "Export"
 msgstr "Export"
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "Download all published quotes as a JSON file (fields: text, author, extra)."
 msgstr "Alle veröffentlichten Zitate als JSON-Datei herunterladen (Felder: text, author, extra)."
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "Export JSON"
 msgstr "JSON exportieren"
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "Import"
 msgstr "Import"
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "Upload a JSON file (array of objects with fields text, author, extra). Existing quotes (same text) will be skipped."
 msgstr "JSON-Datei hochladen (Array mit Objekten der Felder text, author, extra). Bereits vorhandene Zitate (gleicher Text) werden übersprungen."
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "Import JSON"
 msgstr "JSON importieren"
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "Exporting…"
 msgstr "Wird exportiert…"
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "Export error:"
 msgstr "Fehler beim Export:"
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "No file selected."
 msgstr "Keine Datei ausgewählt."
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "File upload error."
 msgstr "Fehler beim Datei-Upload."
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "Invalid file type – please upload a JSON file."
 msgstr "Ungültiger Dateityp – bitte eine JSON-Datei hochladen."
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "The file is too large (max. 2 MB)."
 msgstr "Die Datei ist zu groß (max. 2 MB)."
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "The JSON file could not be read or has an invalid format."
 msgstr "Die JSON-Datei konnte nicht gelesen werden oder hat ein ungültiges Format."
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "The JSON file contains no entries."
 msgstr "Die JSON-Datei enthält keine Einträge."
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "Unknown error."
 msgstr "Unbekannter Fehler."
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "%d quote imported"
 msgid_plural "%d quotes imported"
 msgstr[0] "%d Zitat importiert"
 msgstr[1] "%d Zitate importiert"
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "%d already exists (skipped)"
 msgid_plural "%d already exist (skipped)"
 msgstr[0] "%d bereits vorhanden (übersprungen)"
 msgstr[1] "%d bereits vorhanden (übersprungen)"
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "Help"
 msgstr "Anleitung"
 
-#: qotd.php
-msgid "QOTD – Help"
-msgstr "QOTD – Anleitung"
+#: citatly-daily-quote.php
+msgid "Citatly – Help"
+msgstr "Citatly – Anleitung"
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "Quick Start"
 msgstr "Schnellstart"
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "Activate the plugin."
 msgstr "Das Plugin aktivieren."
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "Go to Quotes → Add New and create your first quote."
 msgstr "Unter Zitate → Neu hinzufügen das erste Zitat anlegen."
 
-#: qotd.php
-msgid "Add the shortcode [qotd] to any page or post."
-msgstr "Den Shortcode [qotd] in eine Seite oder einen Beitrag einfügen."
+#: citatly-daily-quote.php
+msgid "Add the shortcode [citatly] to any page or post."
+msgstr "Den Shortcode [citatly] in eine Seite oder einen Beitrag einfügen."
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "The quote of the day changes automatically at midnight."
 msgstr "Das Zitat des Tages wechselt automatisch um Mitternacht."
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "Shortcode"
 msgstr "Shortcode"
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "Basic usage:"
 msgstr "Grundlegende Verwendung:"
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "With a custom CSS class:"
 msgstr "Mit einer eigenen CSS-Klasse:"
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "Generated HTML structure:"
 msgstr "Erzeugte HTML-Struktur:"
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "Gutenberg Block"
 msgstr "Gutenberg-Block"
 
-#: qotd.php
-msgid "The QOTD block is available in the block editor. It requires the compiled /build directory inside the plugin folder."
-msgstr "Der QOTD-Block ist im Block-Editor verfügbar. Er benötigt das kompilierte /build-Verzeichnis im Plugin-Ordner."
+#: citatly-daily-quote.php
+msgid "The Citatly block is available in the block editor. It requires the compiled /build directory inside the plugin folder."
+msgstr "Der Citatly-Block ist im Block-Editor verfügbar. Er benötigt das kompilierte /build-Verzeichnis im Plugin-Ordner."
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "The block supports the native WordPress \"Additional CSS class(es)\" field (className). The class is passed directly to the shortcode output."
 msgstr "Der Block unterstützt das native WordPress-Feld \"Zusätzliche CSS-Klasse(n)\" (className). Die Klasse wird direkt an die Shortcode-Ausgabe weitergegeben."
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "CSS Customization"
 msgstr "CSS-Anpassung"
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "The following CSS classes are available for styling:"
 msgstr "Folgende CSS-Klassen stehen zur Gestaltung zur Verfügung:"
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "outer container"
 msgstr "äußerer Container"
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "quote text"
 msgstr "Zitat-Text"
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "author and source wrapper"
 msgstr "Wrapper für Autor und Quelle"
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "author name"
 msgstr "Autorenname"
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "source / additional info"
 msgstr "Quelle / Zusatz"
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "Example:"
 msgstr "Beispiel:"
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "REST Endpoint"
 msgstr "REST-Endpunkt"
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "URL:"
 msgstr "URL:"
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "Method: GET – no authentication required."
 msgstr "Methode: GET – keine Authentifizierung erforderlich."
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "Response format:"
 msgstr "Antwortformat:"
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "The response includes Cache-Control headers. The quote changes at midnight (site timezone)."
 msgstr "Die Antwort enthält Cache-Control-Header. Das Zitat wechselt um Mitternacht (Website-Zeitzone)."
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "Go to Quotes → Import / Export."
 msgstr "Unter Zitate → Import / Export öffnen."
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "Format: JSON array of objects with the fields text (required), author and extra (both optional)."
 msgstr "Format: JSON-Array mit Objekten der Felder text (Pflichtfeld), author und extra (beide optional)."
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "Quotes with identical text are skipped (duplicate check)."
 msgstr "Zitate mit identischem Text werden übersprungen (Duplikat-Prüfung)."
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "Maximum file size: 2 MB."
 msgstr "Maximale Dateigröße: 2 MB."
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "Managing Quotes"
 msgstr "Zitate verwalten"
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "Quotes are stored as plain text only – no HTML, no links."
 msgstr "Zitate werden ausschließlich als PlainText gespeichert – kein HTML, keine Links."
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "Line breaks in the text field are preserved in the frontend output (white-space: pre-line)."
 msgstr "Zeilenumbrüche im Textfeld bleiben in der Frontend-Ausgabe erhalten (white-space: pre-line)."
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "If no title is set, one is generated automatically from the first 80 characters of the quote text."
 msgstr "Ist kein Titel gesetzt, wird er automatisch aus den ersten 80 Zeichen des Zitat-Texts generiert."
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "Optional. If left empty, the title is generated automatically from the first 80 characters of the quote text."
 msgstr "Optional. Wird kein Titel eingetragen, wird er automatisch aus den ersten 80 Zeichen des Zitatextes generiert."
 
@@ -328,26 +328,30 @@ msgid "— Author"
 msgstr "— Autor"
 
 #: src/block.json
-msgid "Quote of the Day"
-msgstr "Zitat des Tages"
+msgid "Daily Quote"
+msgstr "Tägliches Zitat"
 
 #: src/block.json
 msgid "Displays the daily quote dynamically via REST API."
 msgstr "Zeigt das tägliche Zitat dynamisch per REST-API an."
 
-#: qotd.php
+#: citatly-daily-quote.php
 msgid "The most up-to-date documentation is available at <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\">%2$s</a>."
-msgstr "Die aktuellste Dokumentation ist verfügbar unter <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\">qotd-plugin.com/de/docs</a>."
+msgstr "Die aktuellste Dokumentation ist verfügbar unter <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\">citatly.com/de/docs</a>."
 
 #. translators: %s: URL to the CSS styling documentation page
-#: qotd.php
-msgid "Interactive examples are available at <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">qotd-plugin.com/docs/css-styling</a>."
-msgstr "Interaktive Beispiele sind verfügbar unter <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">qotd-plugin.com/de/docs/css-anpassung</a>."
+#: citatly-daily-quote.php
+msgid "Interactive examples are available at <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">citatly.com/docs/css-styling</a>."
+msgstr "Interaktive Beispiele sind verfügbar unter <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">citatly.com/de/docs/css-anpassung</a>."
 
-#: qotd-quote-of-the-day.php
+#: citatly-daily-quote.php
 msgid "dash before author (default: \"— \")"
 msgstr "Strich vor dem Autor (Standard: \"— \")"
 
-#: qotd-quote-of-the-day.php
+#: citatly-daily-quote.php
 msgid "dot between author and source (default: \" · \")"
 msgstr "Punkt zwischen Autor und Quelle (Standard: \" · \")"
+
+#: citatly-daily-quote.php
+msgid "Citatly ist kostenlos. Wenn dir das Plugin hilft, freue ich mich über eine kleine Spende!"
+msgstr ""

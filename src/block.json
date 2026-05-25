@@ -1,13 +1,13 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
-  "name": "qotd/zitat-des-tages",
+  "name": "citatly/daily-quote",
   "version": "1.0.0",
-  "title": "Quote of the Day",
+  "title": "Daily Quote",
   "category": "widgets",
   "icon": "format-quote",
   "description": "Displays the daily quote dynamically via REST API.",
-  "textdomain": "qotd-quote-of-the-day",
+  "textdomain": "citatly-daily-quote",
   "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css"
 }

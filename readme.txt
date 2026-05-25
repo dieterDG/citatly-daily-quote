@@ -1,4 +1,4 @@
-=== QOTD - Quote of the Day ===
+=== Citatly - Daily Quote ===
 Contributors: dieter93
 Tags: quote, quotes, quote of the day, shortcode, daily quote
 Requires at least: 6.0
@@ -12,25 +12,25 @@ Display a new quote every day — delivered cache-safely via the WordPress REST 
 
 == Description ==
 
-QOTD (Quote of the Day) adds a dedicated custom post type for quotes and automatically displays one of them each day on your website.
+Citatly (Daily Quote) adds a dedicated custom post type for quotes and automatically displays one of them each day on your website.
 
 The displayed quote changes once per day and is selected deterministically based on the current date — no randomness involved, so every visitor sees the same quote on the same day. Delivery is cache-safe via a REST API endpoint that sends appropriate HTTP caching headers, making it fully compatible with full-page caches and CDNs.
 
-**Live demo & documentation:** See the plugin in action at https://qotd-plugin.com
+**Live demo & documentation:** See the plugin in action at https://citatly.com
 
 **Für deutschsprachige Nutzer:**
 
-Das Plugin „Zitat des Tages" ist vollständig auf Deutsch übersetzt (de_DE). Es zeigt täglich ein neues Zitat aus deiner eigenen Sammlung — cache-sicher, ohne externe Abhängigkeiten und ohne API-Schlüssel. Live-Demo & Dokumentation auf Deutsch: https://qotd-plugin.com/de/
+Das Plugin „Zitat des Tages" ist vollständig auf Deutsch übersetzt (de_DE). Es zeigt täglich ein neues Zitat aus deiner eigenen Sammlung — cache-sicher, ohne externe Abhängigkeiten und ohne API-Schlüssel. Live-Demo & Dokumentation auf Deutsch: https://citatly.com/de/
 
 **Features:**
 
 * Custom post type "Quotes" in the WordPress admin
 * Fields for quote text, author, and an optional extra field (e.g. source, year, or context)
 * Daily quote rotation — consistent for all visitors
-* Embed anywhere with the `[qotd]` shortcode
-* Optional `class` parameter for individual styling: `[qotd class="my-style"]`
+* Embed anywhere with the `[citatly]` shortcode
+* Optional `class` parameter for individual styling: `[citatly class="my-style"]`
 * Gutenberg block support (requires compiled `/build` directory)
-* REST API endpoint `/wp-json/qotd/v1/today` with HTTP caching headers
+* REST API endpoint `/wp-json/citatly/v1/today` with HTTP caching headers
 * Plain text only — no HTML stored or output, XSS-safe by design
 * Auto-generated post title from quote text
 * Import and export quotes as JSON (via admin menu)
@@ -45,26 +45,26 @@ The plugin uses a deterministic algorithm: `crc32(date + site_url)` maps today's
 
 The plugin does not style the quote output — all visual styling is left to your theme. The only included CSS handles the skeleton loader during page load.
 
-`.qotd` — outer wrapper
-`.qotd__text` — the quote text
-`.qotd__meta` — wraps author and source
-`.qotd__separator` — dash before author (default: "— ")
-`.qotd__author` — author name
-`.qotd__divider` — dot between author and source (default: " · ")
-`.qotd__source` — optional extra field
+`.citatly` — outer wrapper
+`.citatly__text` — the quote text
+`.citatly__meta` — wraps author and source
+`.citatly__separator` — dash before author (default: "— ")
+`.citatly__author` — author name
+`.citatly__divider` — dot between author and source (default: " · ")
+`.citatly__source` — optional extra field
 
 == Installation ==
 
-1. Upload the `qotd` folder to `/wp-content/plugins/`.
+1. Upload the `citatly-daily-quote` folder to `/wp-content/plugins/`.
 2. Activate the plugin via the "Plugins" menu in the WordPress admin.
 3. Go to the new "Quotes" menu item and add one or more quotes.
-4. Insert the shortcode `[qotd]` on any page, post, or widget area.
+4. Insert the shortcode `[citatly]` on any page, post, or widget area.
 
 The shortcode accepts an optional `class` parameter to add a custom CSS class:
 
-`[qotd class="my-style"]`
+`[citatly class="my-style"]`
 
-All styling of the output (`.qotd`, `.qotd__text`, `.qotd__separator`, `.qotd__author`, `.qotd__divider`, `.qotd__source`) is handled entirely by your theme.
+All styling of the output (`.citatly`, `.citatly__text`, `.citatly__separator`, `.citatly__author`, `.citatly__divider`, `.citatly__source`) is handled entirely by your theme.
 
 == Frequently Asked Questions ==
 
@@ -94,7 +94,7 @@ No. All fields (text, author, extra) are stored and output as plain text only. T
 
 = Can I style the output? =
 
-Yes. The plugin outputs a simple HTML structure with BEM-style CSS classes. Separators between author and source (dash and dot) have their own classes and can be hidden or replaced via CSS. Add your own styles in your theme's stylesheet or via the WordPress Customizer. Interactive examples are available at https://qotd-plugin.com/docs/css-styling
+Yes. The plugin outputs a simple HTML structure with BEM-style CSS classes. Separators between author and source (dash and dot) have their own classes and can be hidden or replaced via CSS. Add your own styles in your theme's stylesheet or via the WordPress Customizer. Interactive examples are available at https://citatly.com/docs/css-styling
 
 = Does the plugin work with the block editor? =
 
@@ -106,13 +106,13 @@ All plugin data is permanently removed: all quote posts, their meta fields, and 
 
 = Is the plugin available in German? =
 
-Yes. The plugin is fully translated into German (de_DE). The text domain is `qotd`.
+Yes. The plugin is fully translated into German (de_DE). The text domain is `citatly-daily-quote`.
 
 = Does the plugin work when the REST API is disabled? =
 
 The plugin loads the daily quote via a REST API request in the visitor's browser. If the REST API is restricted or disabled for unauthenticated visitors, the quote will not be displayed.
 
-Most performance and security plugins that restrict the REST API also provide a way to whitelist specific endpoints. Add `qotd/v1/today` as an exception to restore functionality. The exact method depends on the plugin or server configuration used — please refer to its documentation for details.
+Most performance and security plugins that restrict the REST API also provide a way to whitelist specific endpoints. Add `citatly/v1/today` as an exception to restore functionality. The exact method depends on the plugin or server configuration used — please refer to its documentation for details.
 
 Note: If you are using Perfmatters, the plugin registers the exception automatically — no manual configuration needed.
 
@@ -131,14 +131,14 @@ Yes. However, if the REST API cache is enabled, the quote may not change daily a
 == Changelog ==
 
 = 1.3.5 =
-* Separators (dash and dot) are now wrapped in their own BEM elements (`.qotd__separator`, `.qotd__divider`) and can be hidden or replaced via CSS
+* Separators (dash and dot) are now wrapped in their own BEM elements (`.citatly__separator`, `.citatly__divider`) and can be hidden or replaced via CSS
 * All meta elements (separator, author, divider, source) are now built dynamically by JavaScript — only elements with content are rendered
 
 = 1.3.4 =
 * Fix: Transient cache for quote IDs is now invalidated when a quote is trashed or deleted. Previously, deleting a quote could result in no quote being displayed until the cache expired on its own
 
 = 1.3.3 =
-* Block: Title and block name changed to English ("Quote of the Day") for consistency with the plugin name on wordpress.org. The editor preview text remains translated
+* Block: Title and block name changed to English ("Daily Quote") for consistency with the plugin name on wordpress.org. The editor preview text remains translated
 
 = 1.3.2 =
 * Improved daily quote selection: a fallback mechanism now ensures that the same quote never appears on two consecutive days
@@ -149,9 +149,9 @@ Yes. However, if the REST API cache is enabled, the quote may not change daily a
 = 1.3.0 =
 * Added CLS-optimized skeleton loader with shimmer animation
 * Dynamic min-height calculation prevents layout shift during quote loading
-* New qotd.css for skeleton loader styling
+* New citatly.css for skeleton loader styling
 * Responsive min-height adjustment for mobile and desktop viewports
-* CSS custom properties for easy skeleton customization (--qotd-skeleton-base, --qotd-skeleton-shine)
+* CSS custom properties for easy skeleton customization (--citatly-skeleton-base, --citatly-skeleton-shine)
 
 = 1.2.0 =
 * Gutenberg block support
