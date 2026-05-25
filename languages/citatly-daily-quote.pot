@@ -332,7 +332,15 @@ msgid "dot between author and source (default: \" · \")"
 msgstr ""
 
 #: citatly-daily-quote.php
-msgid "Citatly ist kostenlos. Wenn dir das Plugin hilft, freue ich mich über eine kleine Spende!"
+msgid "☕ Support the Project"
+msgstr ""
+
+#: citatly-daily-quote.php
+msgid "Citatly is free. If it helps you, I'd appreciate a small donation!"
+msgstr ""
+
+#: citatly-daily-quote.php
+msgid "☕ Ko-fi Donation"
 msgstr ""
 
 #: src/edit.js

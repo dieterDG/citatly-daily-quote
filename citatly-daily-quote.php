@@ -940,13 +940,13 @@ final class Citatly_Plugin
 
 				<div class="postbox" style="grid-column:1/-1;background:#f9f9f9;">
 					<div class="postbox-header" style="padding:0 14px;">
-						<h2 class="hndle">☕ Unterstütze das Projekt</h2>
+						<h2 class="hndle"><?php echo esc_html(__('☕ Support the Project', 'citatly-daily-quote')); ?></h2>
 					</div>
 					<div class="inside">
-						<p><?php echo esc_html(__('Citatly ist kostenlos. Wenn dir das Plugin hilft, freue ich mich über eine kleine Spende!', 'citatly-daily-quote')); ?></p>
+						<p><?php echo esc_html(__('Citatly is free. If it helps you, I\'d appreciate a small donation!', 'citatly-daily-quote')); ?></p>
 						<p>
 							<a href="https://ko-fi.com/dieterDG" target="_blank" rel="noopener noreferrer" class="button button-secondary">
-								☕ Ko-fi Spende
+								<?php echo esc_html(__('☕ Ko-fi Donation', 'citatly-daily-quote')); ?>
 							</a>
 							<a href="https://github.com/sponsors/dieterDG" target="_blank" rel="noopener noreferrer" class="button button-secondary" style="margin-left:8px;">
 								💙 GitHub Sponsors
