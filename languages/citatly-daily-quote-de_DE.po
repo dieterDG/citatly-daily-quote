@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Citatly 1.3.5\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/citatly-daily-quote\n"
 "POT-Creation-Date: 2026-05-25T00:00:00+00:00\n"
-"PO-Revision-Date: 2026-05-25 18:56+0200\n"
+"PO-Revision-Date: 2026-05-26 07:20+0200\n"
 "Last-Translator: Dieter Geiling <dieter@space-in.de>\n"
 "Language-Team: German <de@li.org>\n"
 "Language: de_DE\n"
@@ -121,7 +121,7 @@ msgstr "Import"
 
 #: citatly-daily-quote.php
 msgid "Upload a JSON file (array of objects with fields text, author, extra). Existing quotes (same text) will be skipped."
-msgstr "JSON-Datei hochladen (Array mit Objekten der Felder text, author, extra). Bereits vorhandene Zitate (gleicher Text) werden übersprungen."
+msgstr "Eine JSON-Datei hochladen (Array mit Objekten der Felder text, author, extra). Bereits vorhandene Zitate (gleicher Text) werden übersprungen."
 
 #: citatly-daily-quote.php
 msgid "Import JSON"
@@ -129,11 +129,11 @@ msgstr "JSON importieren"
 
 #: citatly-daily-quote.php
 msgid "Exporting…"
-msgstr "Wird exportiert…"
+msgstr "Exportiere…"
 
 #: citatly-daily-quote.php
 msgid "Export error:"
-msgstr "Fehler beim Export:"
+msgstr "Exportfehler:"
 
 #: citatly-daily-quote.php
 msgid "No file selected."
@@ -177,11 +177,11 @@ msgstr[1] "%d bereits vorhanden (übersprungen)"
 
 #: citatly-daily-quote.php
 msgid "Help"
-msgstr "Anleitung"
+msgstr "Hilfe"
 
 #: citatly-daily-quote.php
 msgid "Citatly – Help"
-msgstr "Citatly – Anleitung"
+msgstr "Citatly – Hilfe"
 
 #: citatly-daily-quote.php
 msgid "Quick Start"
@@ -260,6 +260,14 @@ msgid "source / additional info"
 msgstr "Quelle / Zusatz"
 
 #: citatly-daily-quote.php
+msgid "dash before author (default: \"— \")"
+msgstr "Gedankenstrich vor Autor (Standard: \"— \")"
+
+#: citatly-daily-quote.php
+msgid "dot between author and source (default: \" · \")"
+msgstr "Punkt zwischen Autor und Quelle (Standard: \" · \")"
+
+#: citatly-daily-quote.php
 msgid "Example:"
 msgstr "Beispiel:"
 
@@ -319,9 +327,31 @@ msgstr "Ist kein Titel gesetzt, wird er automatisch aus den ersten 80 Zeichen de
 msgid "Optional. If left empty, the title is generated automatically from the first 80 characters of the quote text."
 msgstr "Optional. Wird kein Titel eingetragen, wird er automatisch aus den ersten 80 Zeichen des Zitatextes generiert."
 
+#. translators: %s: URL to the CSS styling documentation page
+#: citatly-daily-quote.php
+msgid "Interactive examples are available at <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">citatly.com/docs/css-styling</a>."
+msgstr "Interaktive Beispiele sind verfügbar unter <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">citatly.com/de/docs/css-styling</a>."
+
+#: citatly-daily-quote.php
+msgid "☕ Support the Project"
+msgstr "☕ Das Projekt unterstützen"
+
+#: citatly-daily-quote.php
+msgid "Citatly is free. If it helps you, I'd appreciate a small donation!"
+msgstr "Citatly ist kostenlos. Wenn es dir hilft, freue ich mich über eine kleine Spende!"
+
+#: citatly-daily-quote.php
+msgid "☕ Ko-fi Donation"
+msgstr "☕ Ko-fi-Spende"
+
+#. translators: 1: URL to documentation, 2: link label
+#: citatly-daily-quote.php
+msgid "The most up-to-date documentation is available at <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\">%2$s</a>."
+msgstr "Die aktuellste Dokumentation ist verfügbar unter <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\">citatly.com/de/docs</a>."
+
 #: src/edit.js
-msgid "Quote of the Day will be displayed here"
-msgstr "Zitat des Tages wird hier angezeigt"
+msgid "Your daily quote will appear here"
+msgstr "Dein tägliches Zitat erscheint hier"
 
 #: src/edit.js
 msgid "— Author"
@@ -334,32 +364,3 @@ msgstr "Tägliches Zitat"
 #: src/block.json
 msgid "Displays the daily quote dynamically via REST API."
 msgstr "Zeigt das tägliche Zitat dynamisch per REST-API an."
-
-#: citatly-daily-quote.php
-msgid "The most up-to-date documentation is available at <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\">%2$s</a>."
-msgstr "Die aktuellste Dokumentation ist verfügbar unter <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\">citatly.com/de/docs</a>."
-
-#. translators: %s: URL to the CSS styling documentation page
-#: citatly-daily-quote.php
-msgid "Interactive examples are available at <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">citatly.com/docs/css-styling</a>."
-msgstr "Interaktive Beispiele sind verfügbar unter <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">citatly.com/de/docs/css-anpassung</a>."
-
-#: citatly-daily-quote.php
-msgid "dash before author (default: \"— \")"
-msgstr "Strich vor dem Autor (Standard: \"— \")"
-
-#: citatly-daily-quote.php
-msgid "dot between author and source (default: \" · \")"
-msgstr "Punkt zwischen Autor und Quelle (Standard: \" · \")"
-
-#: citatly-daily-quote.php
-msgid "☕ Support the Project"
-msgstr "☕ Unterstütze das Projekt"
-
-#: citatly-daily-quote.php
-msgid "Citatly is free. If it helps you, I'd appreciate a small donation!"
-msgstr "Citatly ist kostenlos. Wenn dir das Plugin hilft, freue ich mich über eine kleine Spende!"
-
-#: citatly-daily-quote.php
-msgid "☕ Ko-fi Donation"
-msgstr "☕ Ko-fi Spende"

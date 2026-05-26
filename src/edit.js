@@ -14,7 +14,7 @@ export default function Edit() {
 				className="citatly__text"
 				style={ { whiteSpace: 'pre-line' } }
 			>
-				{ __( 'Quote of the Day will be displayed here', 'citatly-daily-quote' ) }
+				{ __( 'Your daily quote will appear here', 'citatly-daily-quote' ) }
 			</div>
 			<div className="citatly__meta">
 				<span className="citatly__author">
