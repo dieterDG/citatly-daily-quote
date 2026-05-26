@@ -128,6 +128,19 @@ Yes. However, if the REST API cache is enabled, the quote may not change daily a
 4. Import / Export page for bulk management of quotes via JSON.
 5. The help / documentation page inside the admin.
 
+== Source Code ==
+
+The compiled file `build/index.js` is generated from the human-readable source files in the `src/` directory using `@wordpress/scripts`.
+
+The full source code, including all build tools and configuration, is publicly available at:
+https://github.com/dieterDG/citatly-daily-quote
+
+To regenerate the build files:
+
+1. Clone the repository
+2. Run `npm install`
+3. Run `npm run build`
+
 == Changelog ==
 
 = 1.3.5 =
