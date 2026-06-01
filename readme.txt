@@ -1,6 +1,6 @@
 === Citatly - Daily Quote ===
 Contributors: dieter93
-Tags: quote, quotes, quote of the day, shortcode, daily quote
+Tags: quote, quotes, quote of the day, daily quote, block
 Requires at least: 6.0
 Tested up to: 7.0
 Requires PHP: 8.0
@@ -8,42 +8,75 @@ Stable tag: 1.3.5
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Display a new quote every day — delivered cache-safely via the WordPress REST API.
+Display a fresh quote every day from your own collection — cache-safe, no external services, no API key required.
 
 == Description ==
 
-Citatly (Daily Quote) adds a dedicated custom post type for quotes and automatically displays one of them each day on your website.
+Citatly lets you manage your own quote collection and automatically displays a fresh one each day on your website — cache-safe, without any external services or API keys.
 
-The displayed quote changes once per day and is selected deterministically based on the current date — no randomness involved, so every visitor sees the same quote on the same day. Delivery is cache-safe via a REST API endpoint that sends appropriate HTTP caching headers, making it fully compatible with full-page caches and CDNs.
+The daily quote is selected based on the current date, so every visitor sees the same quote throughout the day regardless of caching. It is delivered via a REST API endpoint with proper HTTP caching headers, making it fully compatible with full-page caches and CDNs like WP Rocket, LiteSpeed Cache, or Cloudflare.
 
-**Live demo & documentation:** See the plugin in action at https://citatly.com
+**Live demo & documentation:** [citatly.com](https://citatly.com)
 
 **Für deutschsprachige Nutzer:**
 
-Das Plugin „Zitat des Tages" ist vollständig auf Deutsch übersetzt (de_DE). Es zeigt täglich ein neues Zitat aus deiner eigenen Sammlung — cache-sicher, ohne externe Abhängigkeiten und ohne API-Schlüssel. Live-Demo & Dokumentation auf Deutsch: https://citatly.com/de/
+Das Plugin „Zitat des Tages" ist vollständig auf Deutsch übersetzt (de_DE). Es zeigt täglich ein neues Zitat aus deiner eigenen Sammlung — cache-sicher, ohne externe Abhängigkeiten und ohne API-Schlüssel. Live-Demo & Dokumentation auf Deutsch: [citatly.com/de/](https://citatly.com/de/)
 
 **Features:**
 
-* Custom post type "Quotes" in the WordPress admin
+* Manage your quotes via a dedicated custom post type in the WordPress admin
 * Fields for quote text, author, and an optional extra field (e.g. source, year, or context)
-* Daily quote rotation — consistent for all visitors
-* Embed anywhere with the `[citatly]` shortcode
-* Optional `class` parameter for individual styling: `[citatly class="my-style"]`
-* Gutenberg block support (requires compiled `/build` directory)
+* Daily quote rotation — same quote for all visitors throughout the day
+* Embed anywhere with the `[citatly]` shortcode or the Gutenberg block
+* Optional `class` parameter for custom styling: `[citatly class="my-style"]`
 * REST API endpoint `/wp-json/citatly/v1/today` with HTTP caching headers
-* Plain text only — no HTML stored or output, XSS-safe by design
-* Auto-generated post title from quote text
-* Import and export quotes as JSON (via admin menu)
+* Import and export your quotes as JSON
+* Plain text only — no HTML stored or output, safe by design
 * Clean uninstall — removes all plugin data when deleted
-* Translation-ready (`.pot` file included)
+* Fully translated into German (de_DE)
 
-**How the daily quote is selected:**
+== Installation ==
 
-The plugin uses a deterministic algorithm: `crc32(date + site_url)` maps today's date to a fixed quote from your collection. A fallback mechanism ensures that the same quote never appears on two consecutive days. This means the quote is stable throughout the day, works correctly even with full-page caching, and does not require any session or cookie.
+1. Upload the `citatly-daily-quote` folder to `/wp-content/plugins/`.
+2. Activate the plugin via the "Plugins" menu in the WordPress admin.
+3. Go to **Quotes → Add New** and add one or more quotes.
+4. Insert the shortcode `[citatly]` on any page, post, or widget area — or use the Gutenberg block.
 
-**CSS structure:**
+The quote changes automatically at midnight (site timezone).
 
-The plugin does not style the quote output — all visual styling is left to your theme. The only included CSS handles the skeleton loader during page load.
+== Frequently Asked Questions ==
+
+= Does the quote change for every page load? =
+
+No. The quote is selected once per day based on the current date. All visitors see the same quote throughout the day, regardless of caching.
+
+= Why might the displayed quote unexpectedly change? =
+
+The daily quote is selected based on the current date and the total number of published quotes. Adding, deleting, or unpublishing a quote may cause today's quote to change. From the next day on, everything works as normal again.
+
+= Is the plugin compatible with caching plugins and CDNs? =
+
+Yes. The REST endpoint returns proper `Cache-Control` and `Expires` headers that expire at midnight. It works correctly with WP Rocket, W3 Total Cache, LiteSpeed Cache, Cloudflare, and similar solutions.
+
+= Does the plugin work with LiteSpeed Cache? =
+
+Yes. However, if REST API caching is enabled in LiteSpeed Cache, the quote may not change daily as expected. To fix this, set "Default REST TTL" to 0 under LiteSpeed Cache → Cache → TTL.
+
+= Does the plugin work when the REST API is restricted? =
+
+The daily quote is loaded via a REST API request in the visitor's browser. If the REST API is restricted or disabled for unauthenticated visitors, the quote will not be displayed.
+
+Most performance and security plugins that restrict the REST API also allow whitelisting specific endpoints. Add `citatly/v1/today` as an exception to restore functionality.
+
+Note: If you are using Perfmatters, the exception is registered automatically — no manual configuration needed.
+
+= Does the Gutenberg block work? =
+
+Yes. The block is available in the editor right away after activation. The shortcode `[citatly]` works independently of the block and is always available.
+
+= Can I style the output? =
+
+Yes. The plugin outputs a simple HTML structure with BEM-style CSS classes that you can target in your theme's stylesheet:
 
 `.citatly` — outer wrapper
 `.citatly__text` — the quote text
@@ -53,93 +86,40 @@ The plugin does not style the quote output — all visual styling is left to you
 `.citatly__divider` — dot between author and source (default: " · ")
 `.citatly__source` — optional extra field
 
-== Installation ==
-
-1. Upload the `citatly-daily-quote` folder to `/wp-content/plugins/`.
-2. Activate the plugin via the "Plugins" menu in the WordPress admin.
-3. Go to the new "Quotes" menu item and add one or more quotes.
-4. Insert the shortcode `[citatly]` on any page, post, or widget area.
-
-The shortcode accepts an optional `class` parameter to add a custom CSS class:
-
-`[citatly class="my-style"]`
-
-All styling of the output (`.citatly`, `.citatly__text`, `.citatly__separator`, `.citatly__author`, `.citatly__divider`, `.citatly__source`) is handled entirely by your theme.
-
-== Frequently Asked Questions ==
-
-= Does the quote change for every page load? =
-
-No. The quote is selected once per day based on the current date. All visitors see the same quote throughout the day, regardless of caching.
-
-= Why might the current quote change? =
-
-The quote of the day is selected based on the date and the total number of published quotes. Adding, deleting, or unpublishing a quote may cause today's displayed quote to change. From the next day on, everything works as normal again.
-
-= Is the plugin compatible with caching plugins and CDNs? =
-
-Yes. The REST endpoint returns proper `Cache-Control` and `Expires` headers that expire at midnight. It works correctly with WP Rocket, W3 Total Cache, LiteSpeed Cache, Cloudflare, and similar solutions.
+Interactive styling examples are available at [citatly.com/docs/css-styling](https://citatly.com/docs/css-styling)
 
 = How many quotes can I add? =
 
-There is no hard limit. The plugin loads up to 5,000 published quote IDs into a transient cache (refreshed daily), which is sufficient for any practical use case.
+There is no hard limit. The plugin handles up to 5,000 published quotes without any issues.
 
 = Can I import existing quotes? =
 
-Yes. Go to "Quotes → Import / Export" in the admin. Upload a JSON file containing an array of objects with the fields `text`, `author`, and `extra`. Duplicate quotes (matching text) are automatically skipped.
+Yes. Go to **Quotes → Import / Export** in the admin. Upload a JSON file containing an array of objects with the fields `text`, `author`, and `extra`. Duplicate quotes (same text) are automatically skipped.
 
 = Does the plugin store HTML in quotes? =
 
-No. All fields (text, author, extra) are stored and output as plain text only. This prevents XSS issues and keeps quotes portable. Line breaks entered in the text field are preserved in the frontend output.
-
-= Can I style the output? =
-
-Yes. The plugin outputs a simple HTML structure with BEM-style CSS classes. Separators between author and source (dash and dot) have their own classes and can be hidden or replaced via CSS. Add your own styles in your theme's stylesheet or via the WordPress Customizer. Interactive examples are available at https://citatly.com/docs/css-styling
-
-= Does the plugin work with the block editor? =
-
-Yes, if the `/build` directory with the compiled block files is present. The shortcode works independently of the block and is always available.
+No. All fields are stored and output as plain text only. Line breaks entered in the text field are preserved in the frontend output.
 
 = What happens when the plugin is deleted? =
 
-All plugin data is permanently removed: all quote posts, their meta fields, and the transient cache. Use the export function (Quotes → Import / Export) before deleting the plugin if you want to keep your quotes.
+All plugin data is permanently removed: all quote posts, their meta fields, and the transient cache. Use **Quotes → Import / Export** to export your quotes before deleting the plugin.
 
 = Is the plugin available in German? =
 
-Yes. The plugin is fully translated into German (de_DE). The text domain is `citatly-daily-quote`.
-
-= Does the plugin work when the REST API is disabled? =
-
-The plugin loads the daily quote via a REST API request in the visitor's browser. If the REST API is restricted or disabled for unauthenticated visitors, the quote will not be displayed.
-
-Most performance and security plugins that restrict the REST API also provide a way to whitelist specific endpoints. Add `citatly/v1/today` as an exception to restore functionality. The exact method depends on the plugin or server configuration used — please refer to its documentation for details.
-
-Note: If you are using Perfmatters, the plugin registers the exception automatically — no manual configuration needed.
-
-= Does the plugin work with LiteSpeed Cache? =
-
-Yes. However, if the REST API cache is enabled, the quote may not change daily as expected. To fix this, set "Default REST TTL" to 0 under LiteSpeed Cache → Cache settings. A fix for automatic compatibility is included in an upcoming LiteSpeed Cache release.
+Yes. The plugin is fully translated into German (de_DE). If you installed it from wordpress.org, the translation is downloaded automatically by WordPress.
 
 == Screenshots ==
 
-1. The quote output on the frontend — styled with a custom theme.
-2. The quote list in the WordPress admin.
-3. Adding or editing a quote — plain text fields for text, author, and extra.
-4. Import / Export page for bulk management of quotes via JSON.
-5. The help / documentation page inside the admin.
+1. Frontend output — the daily quote displayed on a page, styled with a custom theme.
+2. Quote list in the WordPress admin — an overview of all your quotes.
+3. Add or edit a quote — plain text fields for quote text, author, and an optional extra field.
+4. Import / Export — bulk manage your quotes via JSON file upload and download.
+5. Built-in help page — quick reference for shortcode, block, CSS classes, and the REST API endpoint.
 
 == Source Code ==
 
-The compiled file `build/index.js` is generated from the human-readable source files in the `src/` directory using `@wordpress/scripts`.
-
 The full source code, including all build tools and configuration, is publicly available at:
-https://github.com/dieterDG/citatly-daily-quote
-
-To regenerate the build files:
-
-1. Clone the repository
-2. Run `npm install`
-3. Run `npm run build`
+[github.com/dieterDG/citatly-daily-quote](https://github.com/dieterDG/citatly-daily-quote)
 
 == Changelog ==
 
