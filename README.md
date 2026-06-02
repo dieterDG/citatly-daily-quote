@@ -1,6 +1,10 @@
 # Citatly – Daily Quote
 
 [![License: GPLv2](https://img.shields.io/badge/License-GPLv2-blue.svg)](https://www.gnu.org/licenses/gpl-2.0.html)
+[![WordPress Plugin Version](https://img.shields.io/wordpress/plugin/v/citatly-daily-quote)](https://wordpress.org/plugins/citatly-daily-quote/)
+[![WordPress Plugin Downloads](https://img.shields.io/wordpress/plugin/dt/citatly-daily-quote)](https://wordpress.org/plugins/citatly-daily-quote/)
+[![WordPress Plugin Rating](https://img.shields.io/wordpress/plugin/stars/citatly-daily-quote)](https://wordpress.org/plugins/citatly-daily-quote/reviews/)
+[![Tested up to WordPress](https://img.shields.io/wordpress/plugin/tested/citatly-daily-quote)](https://wordpress.org/plugins/citatly-daily-quote/)
 
 Display a new quote every day — delivered cache-safely via the WordPress REST API.
 
